@@ -1,27 +1,26 @@
-export function oneCountryCreateMarkup(
-  countryName,
-  flag,
-  capital,
-  population,
-  languages
-) {
-  return `<li class="country_item">
-    
-    <div class="container_country_item"><img src="${flag.svg}" alt="${
-    flag.alt
-  }" class="country_img">
-    <h1>${countryName.official}</h1></div>
-    <p><span class="country_item-text">Capital:</span> ${capital}</p>
-    <p><span class="country_item-text">Population:</span> ${population}</p>
+export function oneCountryCreateMarkup(array) {
+  return array.map(item => {
+    return `<li class="country_item">
+    <div class="container_country_item"><img src="${item.flags.svg}" alt="${
+      item.flags.alt
+    }" class="country_img">
+    <h1>${item.name.official}</h1></div>
+    <p><span class="country_item-text">Capital:</span> ${item.capital}</p>
+    <p><span class="country_item-text">Population:</span> ${item.population}</p>
     <p><span class="country_item-text">Languages:</span> ${Object.values(
-      languages
+      item.languages
     )}</p>
 </li>`;
+  });
 }
 
-export function manyCountriesCreateMarkup(countryName, flag) {
-  return `<li class="country_item">
-    <div class="container_country_item"><img src="${flag.svg}" alt="${flag.alt}" class="country_img">
-    <p>${countryName.official}</p></div>
+export function manyCountriesCreateMarkup(array) {
+  return array
+    .map(item => {
+      return `<li class="country_item">
+    <div class="container_country_item"><img src="${item.flags.svg}" alt="${item.flags.alt}" class="country_img">
+    <p>${item.name.official}</p></div>
 </li>`;
+    })
+    .join('');
 }
